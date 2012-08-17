@@ -2,9 +2,7 @@ Moodle Engagement Analytics for Moodle 2
 
  * ABOUT *
 
-<TODO>
-
-This plugin was designed for Moodle version 2.2 and upwards
+This is the M2.0 / M2.1 version of the course report. Do NOT use this for M2.2+.
 
  * CREDITS *
 
