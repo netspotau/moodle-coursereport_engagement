@@ -32,9 +32,9 @@ defined('MOODLE_INTERNAL') || die;
  * @param stdClass $course The course to object for the report
  * @param stdClass $context The context of the course
  */
-function coursereport_engagement_extend_navigation_course($navigation, $course, $context) {
+function engagement_report_extend_navigation($navigation, $course, $context) {
     if (has_capability('report/engagement:view', $context)) {
-        $url = new moodle_url('/report/engagement/index.php', array('id' => $course->id));
+        $url = new moodle_url('/course/report/engagement/index.php', array('id' => $course->id));
         $navigation->add(get_string('pluginname', 'coursereport_engagement'), $url,
                          navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
     }

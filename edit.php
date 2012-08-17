@@ -22,18 +22,18 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(dirname(__FILE__).'/../../config.php');
+require_once(dirname(__FILE__).'/../../../config.php');
 require_once(dirname(__FILE__).'/edit_form.php');
 require_once(dirname(__FILE__).'/locallib.php');
 
 $id = required_param('id', PARAM_INT); // Course ID.
-$url = new moodle_url('/report/engagement/edit.php', array('id' => $id));
-$reporturl = new moodle_url('/report/engagement/index.php', array('id' => $id));
+$url = new moodle_url('/course/report/engagement/edit.php', array('id' => $id));
+$reporturl = new moodle_url('/course/report/engagement/index.php', array('id' => $id));
 $PAGE->set_url($url);
 $PAGE->set_pagelayout('report');
 
 $course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
-$context = context_course::instance($course->id);
+$context = get_context_instance(CONTEXT_COURSE, $course->id);
 
 require_login($course);
 
@@ -53,7 +53,7 @@ $mform = new coursereport_engagement_edit_form(null, array('id' => $id, 'indicat
 
 $message = '';
 if ($mform->is_cancelled()) {
-    redirect(new moodle_url('/report/engagement/index.php', array('id' => $id)));
+    redirect(new moodle_url('/course/report/engagement/index.php', array('id' => $id)));
 } else if ($formdata = $mform->get_data()) {
     $message = $OUTPUT->notification(get_string('changessaved'), 'notifysuccess');
     $weights = array();
@@ -90,7 +90,7 @@ if ($indicators = $DB->get_records('coursereport_engagement', array('course' => 
 }
 $mform->set_data($data);
 
-add_to_log($course->id, 'course', 'report engagement edit', "report/engagement/edit.php?id=$id", $course->id);
+add_to_log($course->id, 'course', 'report engagement edit', "course/report/engagement/edit.php?id=$id", $course->id);
 
 echo $OUTPUT->header();
 echo $message;

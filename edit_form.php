@@ -27,6 +27,7 @@ if (!defined('MOODLE_INTERNAL')) {
 }
 
 require_once($CFG->libdir.'/formslib.php');
+require_once(dirname(__FILE__).'/lib.php');
 
 class coursereport_engagement_edit_form extends moodleform {
 
@@ -54,7 +55,7 @@ class coursereport_engagement_edit_form extends moodleform {
         $pluginman = plugin_manager::instance();
         $instances = get_plugin_list('engagementindicator');
         foreach ($indicators as $name => $path) {
-            $plugin = $pluginman->get_plugin_info('engagementindicator_'.$name);
+            $plugin = coursereport_engagement_get_plugin_info($pluginman, 'engagementindicator_'.$name);
             $file = "$CFG->dirroot/mod/engagement/indicator/$name/thresholds_form.php";
             if (file_exists($file) && $plugin->is_enabled()) {
                 require_once($file);

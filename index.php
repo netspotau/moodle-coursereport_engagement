@@ -43,9 +43,9 @@ if ($userid) {
 }
 
 require_login($course);
-$context = context_course::instance($course->id);
+$context = get_context_instance(CONTEXT_COURSE, $course->id);
 $PAGE->set_context($context);
-$updateurl = new moodle_url('/report/engagement/edit.php', array('id' => $id));
+$updateurl = new moodle_url('/course/report/engagement/edit.php', array('id' => $id));
 $PAGE->set_button($OUTPUT->single_button($updateurl, get_string('updatesettings', 'coursereport_engagement'), 'get'));
 $PAGE->set_heading($course->fullname);
 
@@ -75,7 +75,7 @@ echo $OUTPUT->heading(get_string($heading, 'coursereport_engagement', $info));
 $pluginman = plugin_manager::instance();
 $indicators = get_plugin_list('engagementindicator');
 foreach ($indicators as $name => $path) {
-    $plugin = $pluginman->get_plugin_info('engagementindicator_'.$name);
+    $plugin = coursereport_engagement_get_plugin_info($pluginman, 'engagementindicator_'.$name);
     if (!$plugin->is_enabled()) {
         unset($indicators[$name]);
     }

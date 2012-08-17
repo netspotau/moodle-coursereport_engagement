@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/pluginlib.php');
-require_once($CFG->dirroot . '/report/engagement/locallib.php');
+require_once($CFG->dirroot . '/course/report/engagement/locallib.php');
 require_once($CFG->dirroot . '/mod/engagement/indicator/rendererbase.php');
 require_once($CFG->libdir . '/tablelib.php');
 
@@ -82,7 +82,7 @@ class coursereport_engagement_renderer extends plugin_renderer_base {
 
             $displayname = fullname($DB->get_record('user', array('id' => $user)));
 
-            $url = new moodle_url('/report/engagement/index.php', array('id' => $COURSE->id, 'userid' => $user));
+            $url = new moodle_url('/course/report/engagement/index.php', array('id' => $COURSE->id, 'userid' => $user));
             $row[] = html_writer::link($url, $displayname);
             $total = 0;
             $total_raw = 0;
