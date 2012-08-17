@@ -47,7 +47,7 @@ function coursereport_engagement_get_course_summary($courseid) {
 
     // TODO: We want this to rely on enabled indicators in the course...
     require_once($CFG->libdir.'/pluginlib.php');
-    require_once($CFG->dirroot . '/report/engagement/locallib.php');
+    require_once($CFG->dirroot . '/course/report/engagement/locallib.php');
     $pluginman = plugin_manager::instance();
     $instances = get_plugin_list('engagementindicator');
     if (!$weightings = $DB->get_records_menu('coursereport_engagement', array('course' => $courseid), '', 'indicator, weight')) {
