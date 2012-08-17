@@ -64,7 +64,7 @@ function coursereport_engagement_get_course_summary($courseid) {
         }
     }
     foreach ($instances as $name => $path) {
-        $plugin = $pluginman->get_plugin_info('engagementindicator_'.$name);
+        $plugin = coursereport_engagement_get_plugin_info($pluginman, 'engagementindicator_'.$name);
         if ($plugin->is_enabled() && file_exists("$path/indicator.class.php")) {
             require_once("$path/indicator.class.php");
             $classname = "indicator_$name";
@@ -80,6 +80,16 @@ function coursereport_engagement_get_course_summary($courseid) {
         }
     }
     return $risks;
+}
+
+function coursereport_engagement_get_plugin_info($manager, $component) {
+    list($type, $name) = normalize_component($component);
+    $plugins = $manager->get_plugins();
+    if (isset($plugins[$type][$name])) {
+        return $plugins[$type][$name];
+    } else {
+        return null;
+    }
 }
 
 /**
