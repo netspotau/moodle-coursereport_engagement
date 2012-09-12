@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->libdir . '/pluginlib.php');
+require_once(dirname(__FILE__) . '/pluginlib.php');
 require_once($CFG->dirroot . '/course/report/engagement/locallib.php');
 require_once($CFG->dirroot . '/mod/engagement/indicator/rendererbase.php');
 require_once($CFG->libdir . '/tablelib.php');

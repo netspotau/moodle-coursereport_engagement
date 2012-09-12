@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->libdir . '/pluginlib.php');
+require_once(dirname(__FILE__).'/pluginlib.php');
 
 class plugintype_engagementindicator extends plugintype_base implements plugintype_interface {
 

@@ -46,7 +46,7 @@ function coursereport_engagement_get_course_summary($courseid) {
     $risks = array();
 
     // TODO: We want this to rely on enabled indicators in the course...
-    require_once($CFG->libdir.'/pluginlib.php');
+    require_once(dirname(__FILE__).'/pluginlib.php');
     require_once($CFG->dirroot . '/course/report/engagement/locallib.php');
     $pluginman = plugin_manager::instance();
     $instances = get_plugin_list('engagementindicator');
